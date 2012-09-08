@@ -66,7 +66,6 @@ if [ "$1" -eq 0 ]; then
 systemctl stop calenderr.service
 fi
 # >> preun
-systemctl stop calenderr.service
 systemctl disable calenderr.service
 # << preun
 
@@ -74,16 +73,11 @@ systemctl disable calenderr.service
 systemctl daemon-reload
 systemctl reload-or-try-restart calenderr.service
 # >> post
-systemctl --system daemon-reload
-systemctl start calenderr.service
 systemctl enable calenderr.service
 # << post
 
 %postun
 systemctl daemon-reload
-# >> postun
-systemctl --system daemon-reload
-# << postun
 
 %files
 %defattr(-,root,root,-)
